@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fancify Shamcify</title>
+    <style>
+        fieldset {
+            border: 2px solid #808080;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        legend {
+            padding: 0 10px;
+            font-weight: bold;
+        }
+        #textInput {
+            font-size: 16px; /* Initial font size for clarity */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fancify my Text</h1>
+
+    <fieldset>
+        <legend>Text</legend>
+        <textarea id="textInput" placeholder="Type your text here..." rows="4" cols="30"></textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>Fancify</legend>
+        <button onclick="makeBigger()">Bigger!</button>
+        <div>
+            <input type="radio" id="fancyShmancy" name="style" value="fancy" onchange="styleChange()">
+            <label for="fancyShmancy">FancyShmancy</label>
+            <input type="radio" id="boringBetty" name="style" value="boring" onchange="styleChange()">
+            <label for="boringBetty">BoringBetty</label>
+        </div>
+        <button onclick="makeBold()">Bold</button>
+        <button onclick="makeItalic()">Italic</button>
+        <button onclick="makeUnderline()">Underline</button>
+        <button onclick="makeClear()">Clear Formatting</button>
+        <button onclick="moo()">Moo</button>
+    </fieldset>
+
+    <p>Output: <span id="textOutput"></span></p>
+
+    <script>
+        function makeBold() {
+            const textInput = document.getElementById('textInput');
+            textInput.style.fontWeight = textInput.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        }
+
+        function makeItalic() {
+            const textInput = document.getElementById('textInput');
+            textInput.style.fontStyle = textInput.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        }
+
+        function makeUnderline() {
+            const textInput = document.getElementById('textInput');
+            textInput.style.textDecoration = textInput.style.textDecoration === 'underline' ? 'none' : 'underline';
+        }
+
+        function makeClear() {
+            const textInput = document.getElementById('textInput');
+            textInput.style.fontWeight = 'normal';
+            textInput.style.fontStyle = 'normal';
+            textInput.style.textDecoration = 'none';
+            textInput.style.color = 'black';
+            textInput.style.fontSize = '16px';
+        }
+
+        function makeBigger() {
+            document.getElementById('textInput').style.fontSize = "24pt";
+        }
+
+        function styleChange() {
+            const textInput = document.getElementById('textInput');
+            if (document.getElementById('fancyShmancy').checked) {
+                alert("Applying fancy style!");
+                textInput.style.fontWeight = "bold";
+                textInput.style.color = "blue";
+                textInput.style.textDecoration = "underline";
+            } else if (document.getElementById('boringBetty').checked) {
+                alert("Removing fancy style.");
+                textInput.style.fontWeight = "normal";
+                textInput.style.color = "black";
+                textInput.style.textDecoration = "none";
+            }
+        }
+
+        function moo() {
+            let textInput = document.getElementById('textInput');
+            let text = textInput.value;
+            let sentences = text.split(".");
+            for (let i = 0; i < sentences.length; i++) {
+                if (sentences[i].trim().length > 0) {
+                    sentences[i] = sentences[i].trim() + "-Moo";
+                }
+            }
+            textInput.value = sentences.join(". ").trim();
+        }
+    </script>
+</body>
+</html>
